@@ -456,9 +456,9 @@ fn configure(terminal: &mut Terminal) -> Result<()> {
     terminal.set_kitty_image_from_shared_mem_allowed(false)?;
     terminal.set_kitty_image_temp_file_dir(None)?;
     terminal.set_scrollback_max_bytes(Some(SCROLLBACK_BYTES))?;
-    // A cursor its program has asked nothing of blinks, as Ghostty's does. The
-    // snapshot says whether one was asked for, and one that was is left as it is.
-    terminal.set_default_cursor_blink(Some(true))?;
+    // A cursor its program has asked nothing of stays still. The snapshot says
+    // whether one was asked for, and one that was is left as it is.
+    terminal.set_default_cursor_blink(Some(false))?;
     Ok(())
 }
 

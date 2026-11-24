@@ -4,8 +4,9 @@ use std::collections::HashMap;
 
 use eframe::egui::{self, Rect, emath::easing::cubic_out};
 
-/// How long a pane takes to come to rest, in seconds.
-const TIME: f64 = 0.18;
+/// How long a pane takes to come to rest, in seconds. Zero: panes jump
+/// straight to their places.
+const TIME: f64 = 0.0;
 
 /// Where a pane was when it was last sent somewhere, where it is going, and when
 /// it set out.
@@ -19,6 +20,9 @@ struct Place {
 impl Place {
     /// Where it is just now: it sets out fast, and slows as it arrives.
     fn shown(&self, now: f64) -> Rect {
+        if TIME <= 0.0 {
+            return self.to;
+        }
         let part = ((now - self.since) / TIME).clamp(0.0, 1.0) as f32;
         self.from.lerp_towards(&self.to, cubic_out(part))
     }

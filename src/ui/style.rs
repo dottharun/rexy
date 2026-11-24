@@ -43,7 +43,8 @@ pub const PRESSED: Color32 = white(46);
 const OVER: f32 = 12.0;
 const SELECTED: f32 = 26.0;
 /// How long a fill takes to come and to go, and a menu to appear, in seconds.
-pub const EASE: f32 = 0.1;
+/// Zero: no easing, egui snaps to the end value.
+pub const EASE: f32 = 0.0;
 /// The fill of what ends programs if pressed. Darker than `RED`, to carry white text.
 pub const DANGER: Color32 = Color32::from_rgb(0xc0, 0x1c, 0x28);
 
