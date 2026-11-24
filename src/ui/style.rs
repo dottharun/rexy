@@ -134,8 +134,10 @@ pub const BODY: f32 = 13.5;
 pub const SMALL: f32 = 12.0;
 const RADIUS: u8 = 7;
 /// A card's corners, and the space between two cards and around them all.
-pub const CARD_RADIUS: u8 = 9;
-pub const GUTTER: f32 = 6.0;
+/// Both zero: square cards, edge to edge. A card's own 1px line still parts
+/// two panes and marks the one in use.
+pub const CARD_RADIUS: u8 = 0;
+pub const GUTTER: f32 = 0.0;
 /// The space to each side of the word in a button that asks.
 const PILL: f32 = 8.0;
 pub const SMALL_BUTTON: f32 = 24.0;

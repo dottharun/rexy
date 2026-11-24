@@ -28,6 +28,8 @@ use crate::{
 };
 
 pub(super) const PANE_HEADER: f32 = 28.0;
+/// The room a card leaves around its terminal: just its line.
+const LINE_ROOM: f32 = 1.0;
 /// How far toward its background a pane goes that is not the one typed in, and
 /// one that shows a last screen.
 const AWAY: f32 = 0.2;
@@ -462,8 +464,9 @@ impl App {
 /// where it has one. Under a header the terminal starts at once; with none, the
 /// card keeps it from its own top edge.
 pub(super) fn room(card: Rect, header: bool) -> Rect {
-    let mut room = card.shrink2(egui::vec2(12.0, 8.0));
-    room.min.y = card.top() + if header { PANE_HEADER + 2.0 } else { 8.0 };
+    // Only the card's 1px line is kept clear, so the text never lies under it.
+    let mut room = card.shrink(LINE_ROOM);
+    room.min.y = card.top() + if header { PANE_HEADER + 2.0 } else { LINE_ROOM };
     room
 }
 
